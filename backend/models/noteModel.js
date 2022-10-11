@@ -3,8 +3,9 @@ const mongoose = require("mongoose")
 const noteSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
-    owedTo: { type: String, default: "Unknown" },
+    owedTo: String,
     amount: { type: Number, required: true },
+    dateDue: Date,
   },
   {
     timestamps: true,

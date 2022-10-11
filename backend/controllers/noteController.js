@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 const getNotes = async (req, res) => {
   try {
-    const notes = await Note.find({})
+    const notes = await Note.find({}).sort({ createdAt: -1 })
     res.status(200).json(notes)
   } catch (err) {
     res.status(400).json({ error: err.message })
@@ -13,7 +13,7 @@ const getNotes = async (req, res) => {
 const getNote = async (req, res) => {}
 
 const createNote = async (req, res) => {
-  const { title, owedTo, amount } = req.body
+  const { title, owedTo, amount, dateDue } = req.body
 
   let emptyFields = []
 
@@ -30,8 +30,10 @@ const createNote = async (req, res) => {
       .json({ error: "Please fill in required fields", emptyFields })
   }
 
+  //TODO: verify 2dp on amount field
+
   try {
-    const note = await Note.create({ title, owedTo, amount })
+    const note = await Note.create({ title, owedTo, amount, dateDue })
     res.status(200).json(note)
   } catch (err) {
     res.status(400).json({ error: err.message })

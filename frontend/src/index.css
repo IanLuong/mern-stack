@@ -71,21 +71,21 @@ header a {
   color: #333;
 }
 
-label, input {
+.create label, .create input {
   display: block;
 }
 
-input {
+.create input {
   padding: 10px;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-form button {
+.create button {
   background: var(--primary);
   border: 0;
   color: #fff;
@@ -106,4 +106,8 @@ div.error {
 
 input.error {
   border: 1px solid var(--error);
+}
+
+.required {
+  color: var(--error);
 }

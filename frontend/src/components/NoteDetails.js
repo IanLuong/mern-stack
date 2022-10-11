@@ -18,16 +18,26 @@ export default function NoteDetails({ note }) {
   return (
     <div className="note-details">
       <h4>{note.title}</h4>
-      <p>
-        <strong>Owed to: </strong>
-        {note.owedTo}
-      </p>
+      {note.owedTo && (
+        <p>
+          <strong>Owed to: </strong>
+          {note.owedTo}
+        </p>
+      )}
       <p>
         <strong>Amount owed: </strong>£{note.amount}
       </p>
+      {note.dateDue && (
+        <p>
+          <strong>Due: </strong>
+          {formatDistanceToNow(new Date(note.dateDue), { addSuffix: true })}
+        </p>
+      )}
       <p>
+        <strong>Added: </strong>
         {formatDistanceToNow(new Date(note.createdAt), { addSuffix: true })}
       </p>
+
       <span onClick={handleClick} className="material-symbols-outlined">
         Delete
       </span>
