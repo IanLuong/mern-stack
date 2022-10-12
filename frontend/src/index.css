@@ -39,7 +39,7 @@ header a {
   gap: 100px;
 }
 
-.note-details {
+.note-details, .create, .summary {
   background: #fff;
   border-radius: .5rem;
   margin: 20px auto;
@@ -51,7 +51,6 @@ header a {
 .note-title {
   margin: 0 0 10px 0;
   font-size: 1.4rem;
-  color: var(--primary)
 }
 
 .subtitle {
@@ -123,5 +122,16 @@ input.error {
 }
 
 .medium-urgency {
-  color: #FDE541
+  color: orange
+}
+
+.summary {
+  text-align: right;
+  margin: 32px 0 0 0;
+  padding: 1.25rem 1.5rem 2.5rem;
+}
+
+.summary-total {
+  font-size: 2rem;
+  font-weight: 500;
 }

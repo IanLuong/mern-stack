@@ -3,6 +3,7 @@ import { useNoteContext } from "../hooks/useNoteContext"
 
 import NoteDetails from "../components/NoteDetails"
 import NoteForm from "../components/NoteForm"
+import SummaryPanel from "../components/SummaryPanel"
 
 export default function Home() {
   const { notes, dispatch } = useNoteContext()
@@ -26,7 +27,10 @@ export default function Home() {
         {notes &&
           notes.map((note) => <NoteDetails key={note._id} note={note} />)}
       </div>
-      <NoteForm />
+      <div className="side">
+        <NoteForm />
+        <SummaryPanel />
+      </div>
     </div>
   )
 }
