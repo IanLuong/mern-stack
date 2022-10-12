@@ -12,6 +12,7 @@ export default function Login() {
 
   return (
     <form className="login" onSubmit={handleSubmit}>
+      <h3>Log In</h3>
       <label>Email:</label>
       <input
         type="email"
