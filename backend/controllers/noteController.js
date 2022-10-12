@@ -30,7 +30,11 @@ const createNote = async (req, res) => {
       .json({ error: "Please fill in required fields", emptyFields })
   }
 
-  //TODO: verify 2dp on amount field
+  if (!amount.match(/^\d+(\.\d{1,2})?$/)) {
+    return res
+      .status(400)
+      .json({ error: "Please use a full number", emptyFields: ["amount"] })
+  }
 
   try {
     const note = await Note.create({ title, owedTo, amount, dateDue })
@@ -44,7 +48,7 @@ const deleteNote = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(404).json({ error: "No such workout" })
+    res.status(404).json({ error: "No such note" })
   }
 
   const note = await Note.findOneAndDelete({ _id: id })
@@ -54,6 +58,17 @@ const deleteNote = async (req, res) => {
   res.status(200).json(note)
 }
 
-const updateNote = async (req, res) => {}
+const updateNote = async (req, res) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ error: "No such note" })
+  }
 
-module.exports = { getNotes, createNote, deleteNote }
+  const note = await Note.findOneAndUpdate({ _id: id })
+  if (!note) {
+    return res.status(404).json({ error: "No such note" })
+  }
+  res.status(200).json(note)
+}
+
+module.exports = { getNotes, createNote, deleteNote, updateNote }

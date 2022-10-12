@@ -1,5 +1,6 @@
 import { useNoteContext } from "../hooks/useNoteContext"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import { differenceInCalendarDays, parseISO } from "date-fns"
 
 export default function NoteDetails({ note }) {
   const { dispatch } = useNoteContext()
@@ -17,7 +18,15 @@ export default function NoteDetails({ note }) {
 
   return (
     <div className="note-details">
-      <h4>{note.title}</h4>
+      <h4 className="note-title">{note.title}</h4>
+
+      {/* TODO: Add conditional colouring when less than 5 days away*/}
+      {note.dateDue && (
+        <h4 className="subtitle">
+          Due {formatDistanceToNow(new Date(note.dateDue), { addSuffix: true })}
+        </h4>
+      )}
+
       {note.owedTo && (
         <p>
           <strong>Owed to: </strong>
@@ -25,22 +34,21 @@ export default function NoteDetails({ note }) {
         </p>
       )}
       <p>
-        <strong>Amount owed: </strong>£{note.amount}
+        <strong>Amount owed: </strong>£{note.amount.toFixed(2)}
       </p>
-      {note.dateDue && (
-        <p>
-          <strong>Due: </strong>
-          {formatDistanceToNow(new Date(note.dateDue), { addSuffix: true })}
-        </p>
-      )}
       <p>
         <strong>Added: </strong>
         {formatDistanceToNow(new Date(note.createdAt), { addSuffix: true })}
       </p>
 
-      <span onClick={handleClick} className="material-symbols-outlined">
-        Delete
-      </span>
+      <div className="options">
+        <span onClick={handleClick} className="material-symbols-outlined">
+          Edit
+        </span>
+        <span onClick={handleClick} className="material-symbols-outlined">
+          Delete
+        </span>
+      </div>
     </div>
   )
 }
