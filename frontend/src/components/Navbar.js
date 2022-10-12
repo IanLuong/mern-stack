@@ -7,6 +7,12 @@ export default function Navbar() {
         <Link to="/">
           <h1>WhatDo.io</h1>
         </Link>
+        <nav>
+          <div className="links">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </div>
+        </nav>
       </div>
     </header>
   )
