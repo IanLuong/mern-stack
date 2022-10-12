@@ -10,6 +10,15 @@ const getNotes = async (req, res) => {
   }
 }
 
+const getNotesByDate = async (req, res) => {
+  try {
+    const notes = await Note.find({}).sort({ dateDue: 1 })
+    res.status(200).json(notes)
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+}
+
 const getNote = async (req, res) => {}
 
 const createNote = async (req, res) => {
@@ -71,4 +80,10 @@ const updateNote = async (req, res) => {
   res.status(200).json(note)
 }
 
-module.exports = { getNotes, createNote, deleteNote, updateNote }
+module.exports = {
+  getNotes,
+  getNotesByDate,
+  createNote,
+  deleteNote,
+  updateNote,
+}
