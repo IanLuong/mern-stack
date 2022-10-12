@@ -1,11 +1,39 @@
 import { useNoteContext } from "../hooks/useNoteContext"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
-import { differenceInCalendarDays, parseISO } from "date-fns"
+import { differenceInCalendarDays, isAfter } from "date-fns"
+import { useEffect, useState } from "react"
 
 export default function NoteDetails({ note }) {
   const { dispatch } = useNoteContext()
+  const [urgency, setUrgency] = useState("low-urgency")
+  const [close, setClose] = useState("")
 
-  async function handleClick() {
+  useEffect(() => {
+    const date = new Date(note.dateDue)
+    const now = new Date()
+
+    const difference = differenceInCalendarDays(date, now)
+    const past = isAfter(now, date)
+
+    //TODO: Refactor this
+    if (past || difference === 0) {
+      setUrgency("high-urgency")
+    } else if (difference <= 5) {
+      setUrgency("medium-urgency")
+    }
+
+    if (difference === 0) {
+      setClose("Today")
+    }
+    if (difference === 1) {
+      setClose("Tomorrow")
+    }
+    if (difference === -1) {
+      setClose("Yesterday")
+    }
+  }, [note.dateDue])
+
+  async function deleteNote() {
     const response = await fetch("/api/notes/" + note._id, {
       method: "DELETE",
     })
@@ -19,14 +47,14 @@ export default function NoteDetails({ note }) {
   return (
     <div className="note-details">
       <h4 className="note-title">{note.title}</h4>
-
-      {/* TODO: Add conditional colouring when less than 5 days away*/}
       {note.dateDue && (
-        <h4 className="subtitle">
-          Due {formatDistanceToNow(new Date(note.dateDue), { addSuffix: true })}
+        <h4 className={`subtitle ${urgency}`}>
+          Due{" "}
+          {close
+            ? close
+            : formatDistanceToNow(new Date(note.dateDue), { addSuffix: true })}
         </h4>
       )}
-
       {note.owedTo && (
         <p>
           <strong>Owed to: </strong>
@@ -42,10 +70,9 @@ export default function NoteDetails({ note }) {
       </p>
 
       <div className="options">
-        <span onClick={handleClick} className="material-symbols-outlined">
-          Edit
-        </span>
-        <span onClick={handleClick} className="material-symbols-outlined">
+        {/* TODO: Add edit button handler */}
+        <span className="material-symbols-outlined">Edit</span>
+        <span onClick={deleteNote} className="material-symbols-outlined">
           Delete
         </span>
       </div>

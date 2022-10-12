@@ -118,6 +118,10 @@ input.error {
   border: 1px solid var(--error);
 }
 
-.required {
+.required, .high-urgency {
   color: var(--error);
+}
+
+.medium-urgency {
+  color: #FDE541
 }
