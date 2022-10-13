@@ -43,9 +43,13 @@ header a {
   background: #fff;
   border-radius: .5rem;
   margin: 20px auto;
-  padding: 1.25rem 2.5rem 2.5rem;
+  padding: 2.5rem 2.5rem 2.5rem;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.create {
+  padding: 1rem 2.5rem 2.5rem 2.5rem;
 }
 
 .note-title {
@@ -152,7 +156,7 @@ nav {
 }
 
 nav a, nav button {
-  margin-left: 10px;
+  margin-left: 1.5rem;
 }
 
 nav button {

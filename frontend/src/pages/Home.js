@@ -25,7 +25,7 @@ export default function Home() {
     if (user) {
       fetchNotes()
     }
-  }, [dispatch])
+  }, [dispatch, user])
 
   return (
     <div className="home">
