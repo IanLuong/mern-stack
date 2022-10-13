@@ -10,9 +10,11 @@ const getNotes = async (req, res) => {
   }
 }
 
+//TODO: Create different endpoints for sorting criteria
 const getNotesByDate = async (req, res) => {
   try {
-    const notes = await Note.find({}).sort({ dateDue: 1 })
+    const user_id = req.user._id
+    const notes = await Note.find({ user_id }).sort({ dateDue: 1 })
     res.status(200).json(notes)
   } catch (err) {
     res.status(400).json({ error: err.message })
@@ -46,10 +48,12 @@ const createNote = async (req, res) => {
   }
 
   try {
-    const note = await Note.create({ title, owedTo, amount, dateDue })
+    console.log(req)
+    const user_id = req.user._id
+    const note = await Note.create({ title, owedTo, amount, dateDue, user_id })
     res.status(200).json(note)
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    res.status(400).json({ error: err.message, emptyFields: [] })
   }
 }
 
