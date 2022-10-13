@@ -2,9 +2,12 @@ import { useNoteContext } from "../hooks/useNoteContext"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import { differenceInCalendarDays, isAfter } from "date-fns"
 import { useEffect, useState } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 export default function NoteDetails({ note }) {
   const { dispatch } = useNoteContext()
+  const { user } = useAuthContext()
+
   const [urgency, setUrgency] = useState("low-urgency")
   const [close, setClose] = useState("")
 
@@ -36,6 +39,7 @@ export default function NoteDetails({ note }) {
   async function deleteNote() {
     const response = await fetch("/api/notes/" + note._id, {
       method: "DELETE",
+      headers: { Authorization: `Bearer ${user.token}` },
     })
     const json = await response.json()
 

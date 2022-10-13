@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
 import { useNoteContext } from "../hooks/useNoteContext"
 
 export default function NoteForm() {
   const { dispatch } = useNoteContext()
+  const { user } = useAuthContext()
 
   const [title, setTitle] = useState("")
   const [owedTo, setOwedTo] = useState("")
@@ -14,6 +16,12 @@ export default function NoteForm() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+
+    if (!user) {
+      setError("You must be logged in")
+      return
+    }
+
     const note = { title, owedTo, amount, dateDue }
 
     const response = await fetch("/api/notes", {
@@ -21,6 +29,7 @@ export default function NoteForm() {
       body: JSON.stringify(note),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     })
 
