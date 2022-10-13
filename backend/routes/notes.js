@@ -6,7 +6,12 @@ const {
   updateNote,
   getNotesByDate,
 } = require("../controllers/noteController")
+const requireAuth = require("../middleware/requireAuth")
+
 const router = express.Router()
+
+//Middleware requiring a login
+router.use(requireAuth)
 
 router.get("/", getNotesByDate)
 // router.get("/:id", getNote)
