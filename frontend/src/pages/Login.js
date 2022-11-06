@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
+import { Link } from "react-router-dom"
 
 export default function Login() {
   const [email, setEmail] = useState("")
@@ -15,7 +16,14 @@ export default function Login() {
 
   return (
     <form className="login" onSubmit={handleSubmit}>
-      <h3>Log In</h3>
+      <img src="piggy_bank.svg" alt="" className="logo" />
+      <h1 className="title">WhatDo.io</h1>
+      <h3>
+        Log In
+        <Link to="/signup" className="prompt">
+          (or Sign up)
+        </Link>
+      </h3>
       <label>Email:</label>
       <input
         type="email"
@@ -28,7 +36,9 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <button disabled={isLoading}>Login</button>
+      <div className="options">
+        <button disabled={isLoading}>Login</button>
+      </div>
       {error && <div className="error">{error}</div>}
     </form>
   )

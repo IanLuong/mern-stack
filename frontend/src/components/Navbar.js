@@ -14,7 +14,7 @@ export default function Navbar() {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>WhatDo.io</h1>
+          <h1 className="title">WhatDo.io</h1>
         </Link>
         <nav>
           {user ? (

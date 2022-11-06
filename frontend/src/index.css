@@ -13,6 +13,17 @@ header {
   background: #fff;
 }
 
+.logo {
+  max-width: 100%;
+  height: 323px;
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  color: var(--primary);
+}
+
 header .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -32,6 +43,24 @@ header a {
   padding: 2.5rem;
   margin: 0 auto;
 }
+
+/* Login screen */
+
+.prompt {
+  margin-left: .5em;
+  text-decoration: underline;
+  color: #555;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Home screen */
 
 .home {
   display: grid;

@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        {user && <Navbar />}
         <div className="pages">
           <Routes>
             <Route

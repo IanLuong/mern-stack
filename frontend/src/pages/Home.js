@@ -35,7 +35,7 @@ export default function Home() {
       </div>
       <div className="side">
         <NoteForm />
-        <SummaryPanel />
+        {notes && <SummaryPanel />}
       </div>
     </div>
   )

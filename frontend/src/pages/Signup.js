@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useSignUp } from "../hooks/useSignup"
+import { Link } from "react-router-dom"
 
 export default function Signup() {
   const [email, setEmail] = useState("")
@@ -15,7 +16,14 @@ export default function Signup() {
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
+      <img src="signup.svg" alt="" className="logo" />
+      <h1 className="title">WhatDo.io</h1>
+      <h3>
+        Sign Up
+        <Link to="/login" className="prompt">
+          (or Login)
+        </Link>
+      </h3>
       <label>Email:</label>
       <input
         type="email"
