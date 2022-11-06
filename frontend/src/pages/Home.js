@@ -29,13 +29,13 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="notes">
-        {notes &&
-          notes.map((note) => <NoteDetails key={note._id} note={note} />)}
-      </div>
       <div className="side">
         <NoteForm />
         {notes && notes.length > 0 && <SummaryPanel />}
+      </div>
+      <div className="notes">
+        {notes &&
+          notes.map((note) => <NoteDetails key={note._id} note={note} />)}
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 :root {
   --primary: #1aac83;
+  --neutral: #555;
   --error: #e7195a;
 }
 
@@ -28,7 +29,7 @@ header {
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: .8rem 2.5rem;
+  padding: .4rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +51,7 @@ header a {
 .prompt {
   margin-left: .5em;
   text-decoration: underline;
-  color: #555;
+  color: var(--neutral);
   font-size: .8rem;
   font-weight: 500;
 }
@@ -59,7 +60,7 @@ header a {
 
 .home {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   gap: 100px;
 }
 
@@ -89,7 +90,7 @@ header a {
 .note-details p {
   margin: 0;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--neutral);
 }
 
 .note-details .options {
@@ -188,8 +189,18 @@ button {
   font-weight: 600;
 }
 
-button:hover {
+.positive:hover, button:hover {
   background: var(--primary);
+  color: #fff;
+}
+
+.neutral:hover {
+  background: var(--neutral);
+  color: #fff;
+}
+
+.negative:hover {
+  background: var(--error);
   color: #fff;
 }
 

@@ -17,17 +17,10 @@ export default function Navbar() {
           <h1 className="title">WhatDo.io</h1>
         </Link>
         <nav>
-          {user ? (
-            <div>
-              <span>{user.email}</span>
-              <button onClick={handleClick}>Log out</button>
-            </div>
-          ) : (
-            <div className="links">
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </div>
-          )}
+          <div>
+            <span>{user.email}</span>
+            <button onClick={handleClick}>Log out</button>
+          </div>
         </nav>
       </div>
     </header>

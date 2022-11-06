@@ -74,9 +74,22 @@ export default function NoteDetails({ note }) {
       </p>
 
       <div className="options">
+        {/* TODO: Add Done button handler */}
         {/* TODO: Add edit button handler */}
-        <span className="material-symbols-outlined">Edit</span>
-        <span onClick={deleteNote} className="material-symbols-outlined">
+        <span
+          className="material-symbols-outlined positive"
+          title="Mark as Done"
+        >
+          Done
+        </span>
+        <span className="material-symbols-outlined neutral" title="Edit Note">
+          Edit
+        </span>
+        <span
+          onClick={deleteNote}
+          className="material-symbols-outlined negative"
+          title="Delete Note"
+        >
           Delete
         </span>
       </div>
