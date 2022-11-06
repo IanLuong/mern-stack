@@ -12,7 +12,7 @@ export default function SummaryPanel() {
   }, [notes])
 
   return (
-    <div className="summary">
+    <div className="summary boxed">
       <h2>Total</h2>
       <span className="summary-total">£{total.toFixed(2)}</span>
     </div>

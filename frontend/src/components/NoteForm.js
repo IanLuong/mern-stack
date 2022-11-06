@@ -52,7 +52,7 @@ export default function NoteForm() {
   }
 
   return (
-    <form className="create" onSubmit={handleSubmit}>
+    <form className="create boxed" onSubmit={handleSubmit}>
       <h2>Add a new Note</h2>
       <label>
         Note Title:<span className="required">*</span>

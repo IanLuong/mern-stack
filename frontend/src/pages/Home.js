@@ -33,10 +33,28 @@ export default function Home() {
         <NoteForm />
         {notes && notes.length > 0 && <SummaryPanel />}
       </div>
-      <div className="notes">
-        {notes &&
-          notes.map((note) => <NoteDetails key={note._id} note={note} />)}
-      </div>
+
+      <main>
+        {/* Add sort and filter functionality */}
+        <div className="sorting">
+          <button
+            className="material-symbols-outlined button-sort neutral"
+            title="Sort by..."
+          >
+            Sort
+          </button>
+          <button
+            className="material-symbols-outlined button-sort neutral"
+            title="Filter"
+          >
+            filter_alt
+          </button>
+        </div>
+        <div className="notes">
+          {notes &&
+            notes.map((note) => <NoteDetails key={note._id} note={note} />)}
+        </div>
+      </main>
     </div>
   )
 }

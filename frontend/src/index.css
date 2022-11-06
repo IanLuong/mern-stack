@@ -64,7 +64,7 @@ header a {
   gap: 100px;
 }
 
-.note-details, .create, .summary {
+.boxed {
   background: #fff;
   border-radius: .5rem;
   margin: 20px auto;
@@ -74,6 +74,7 @@ header a {
 }
 
 .create {
+  margin-top: 0;
   padding: 1rem 2.5rem 2.5rem 2.5rem;
 }
 
@@ -207,4 +208,14 @@ button {
 .button-full {
   margin-top: 10px;
   width: 100%;
+}
+
+.button-sort {
+  border: none;
+  color: #000;
+}
+
+.sorting {
+  display: flex;
+  gap: 1em;
 }

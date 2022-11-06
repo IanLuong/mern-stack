@@ -49,7 +49,7 @@ export default function NoteDetails({ note }) {
   }
 
   return (
-    <div className="note-details">
+    <div className="note-details boxed">
       <h4 className="note-title">{note.title}</h4>
       {note.dateDue && (
         <h4 className={`subtitle ${urgency}`}>
