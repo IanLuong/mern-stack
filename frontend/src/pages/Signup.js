@@ -31,7 +31,9 @@ export default function Signup() {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <button disabled={isLoading}>Sign up</button>
+      <button className="button-full" disabled={isLoading}>
+        Sign up
+      </button>
       {error && <div className="error">{error}</div>}
       <p>
         Already have an account?

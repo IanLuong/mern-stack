@@ -32,7 +32,9 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <button disabled={isLoading}>Login</button>
+        <button className="button-full" disabled={isLoading}>
+          Login
+        </button>
         {error && <div className="error">{error}</div>}
         <p>
           Don't have an account?
