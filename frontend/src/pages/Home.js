@@ -35,7 +35,7 @@ export default function Home() {
       </div>
       <div className="side">
         <NoteForm />
-        {notes && <SummaryPanel />}
+        {notes && notes.length > 0 && <SummaryPanel />}
       </div>
     </div>
   )

@@ -18,12 +18,7 @@ export default function Signup() {
     <form className="signup" onSubmit={handleSubmit}>
       <img src="signup.svg" alt="" className="logo" />
       <h1 className="title">WhatDo.io</h1>
-      <h3>
-        Sign Up
-        <Link to="/login" className="prompt">
-          (or Login)
-        </Link>
-      </h3>
+      <h3>Sign Up</h3>
       <label>Email:</label>
       <input
         type="email"
@@ -38,6 +33,12 @@ export default function Signup() {
       />
       <button disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
+      <p>
+        Already have an account?
+        <Link to="/login" className="prompt">
+          Log In
+        </Link>
+      </p>
     </form>
   )
 }
