@@ -19,7 +19,9 @@ export default function Navbar() {
         <nav>
           <div>
             <span>{user.email}</span>
-            <button onClick={handleClick}>Log out</button>
+            <button className="positive" onClick={handleClick}>
+              Log out
+            </button>
           </div>
         </nav>
       </div>

@@ -85,7 +85,7 @@ export default function NoteForm() {
         value={dateDue}
       ></input>
 
-      <button className="button-full">Add Note</button>
+      <button className="button-full positive">Add Note</button>
       {error && <div className="error">{error}</div>}
     </form>
   )
