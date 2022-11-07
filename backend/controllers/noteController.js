@@ -47,6 +47,13 @@ const createNote = async (req, res) => {
       .json({ error: "Please use a full number", emptyFields: ["amount"] })
   }
 
+  if (amount <= 0) {
+    return res.status(400).json({
+      error: "Amount must be greater than zero",
+      emptyFields: ["amount"],
+    })
+  }
+
   try {
     console.log(req)
     const user_id = req.user._id
