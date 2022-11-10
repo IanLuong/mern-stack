@@ -35,6 +35,21 @@ function sortNotes(notes, sortType) {
   }
 }
 
-function filterNotes(notes, filterType) {}
+function filterNotes(notes, filters) {
+  // TODO: Handle removing some filters
+  // TODO: Add filterting by range for amount
+  if (filters.length === 0) {
+    return notes
+  }
+
+  let returnNotes = [...notes]
+  if (filters.includes("dateDue")) {
+    returnNotes = returnNotes.filter((note) => note.dateDue)
+  }
+  if (filters.includes("owedTo")) {
+    returnNotes = returnNotes.filter((note) => note.owedTo)
+  }
+  return returnNotes
+}
 
 export { sortNotes, filterNotes }

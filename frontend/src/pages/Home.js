@@ -6,7 +6,7 @@ import NoteDetails from "../components/NoteDetails"
 import NoteForm from "../components/NoteForm"
 import SummaryPanel from "../components/SummaryPanel"
 
-import { sortNotes } from "../utils/noteUtils"
+import { sortNotes, filterNotes } from "../utils/noteUtils"
 
 import Select from "react-select"
 
@@ -15,6 +15,12 @@ const sortOptions = [
   { value: "createdAt", label: "Date Created" },
   { value: "owedTo", label: "Owed To" },
   { value: "amount", label: "Amount" },
+]
+
+const filterOptions = [
+  { value: "dateDue", label: "Time Limit" },
+  { value: "owedTo", label: "Owed To" },
+  //TODO: Add option to filter by amount
 ]
 
 export default function Home() {
@@ -26,6 +32,7 @@ export default function Home() {
 
   const [filteredNotes, setFilteredNotes] = useState(null)
 
+  //Handles initial fetching of notes
   useEffect(() => {
     const fetchNotes = async () => {
       const response = await fetch("/api/notes", {
@@ -43,11 +50,24 @@ export default function Home() {
     }
   }, [dispatch, user])
 
+  //Handles sorting and filtering functionality
+  // TODO: Fix order of sorting and filtering
   useEffect(() => {
     if (notes) {
       setFilteredNotes(sortNotes(notes, sortOption.value))
     }
-  }, [sortOption, notes])
+  }, [sortOption, notes, filterOption])
+
+  useEffect(() => {
+    if (notes) {
+      setFilteredNotes(
+        filterNotes(
+          filteredNotes,
+          filterOption.map((option) => option.value)
+        )
+      )
+    }
+  }, [filterOption])
 
   return (
     <div className="home">
@@ -57,21 +77,26 @@ export default function Home() {
       </div>
 
       <main>
-        {/* Add filter functionality */}
-        <div className="sorting">
-          <span className="sorting-option sort-button">
-            <span className="material-symbols-outlined">Sort</span>
-            <Select
-              defaultValue={sortOption}
-              onChange={setSortOption}
-              options={sortOptions}
-            />
-          </span>
-          <span className="sorting-option sort-button">
-            <span className="material-symbols-outlined">filter_alt</span>
-          </span>
-        </div>
         <div className="notes">
+          <div className="sorting">
+            <span className="sorting-option sort-button" title="Sort Notes">
+              <span className="material-symbols-outlined">Sort</span>
+              <Select
+                defaultValue={sortOption}
+                onChange={setSortOption}
+                options={sortOptions}
+              />
+            </span>
+            <span className="sorting-option sort-button" title="Filter Notes">
+              <span className="material-symbols-outlined">filter_alt</span>
+              <Select
+                isMulti={true}
+                defaultValue={filterOption}
+                onChange={setFilterOption}
+                options={filterOptions}
+              />
+            </span>
+          </div>
           {filteredNotes &&
             filteredNotes.map((note) => (
               <NoteDetails key={note._id} note={note} />
