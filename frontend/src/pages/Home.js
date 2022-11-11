@@ -51,23 +51,13 @@ export default function Home() {
   }, [dispatch, user])
 
   //Handles sorting and filtering functionality
-  // TODO: Fix order of sorting and filtering
-  useEffect(() => {
-    if (notes) {
-      setFilteredNotes(sortNotes(notes, sortOption.value))
-    }
-  }, [sortOption, notes, filterOption])
-
   useEffect(() => {
     if (notes) {
       setFilteredNotes(
-        filterNotes(
-          filteredNotes,
-          filterOption.map((option) => option.value)
-        )
+        sortNotes(filterNotes(notes, filterOption), sortOption.value)
       )
     }
-  }, [filterOption])
+  }, [sortOption, notes, filterOption])
 
   return (
     <div className="home">

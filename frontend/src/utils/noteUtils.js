@@ -35,20 +35,24 @@ function sortNotes(notes, sortType) {
   }
 }
 
-function filterNotes(notes, filters) {
-  // TODO: Handle removing some filters
-  // TODO: Add filterting by range for amount
-  if (filters.length === 0) {
-    return notes
+function filterNotes(originalNotes, filterOptions) {
+  // TODO: Add filtering by range for amount
+  if (filterOptions.length === 0) {
+    return originalNotes
   }
 
-  let returnNotes = [...notes]
+  //TODO: Improve mapping filterOption values from filterOption objects
+  let returnNotes = [...originalNotes]
+  let filters = filterOptions.map((option) => option.value)
+
   if (filters.includes("dateDue")) {
     returnNotes = returnNotes.filter((note) => note.dateDue)
   }
   if (filters.includes("owedTo")) {
     returnNotes = returnNotes.filter((note) => note.owedTo)
   }
+  console.log(filters)
+  console.log(returnNotes)
   return returnNotes
 }
 
