@@ -6,7 +6,7 @@ import { useAuthContext } from "../hooks/useAuthContext"
 //Components
 import NoteDetails from "../components/NoteDetails"
 import NoteForm from "../components/NoteForm"
-import SummaryPanel from "../components/SummaryPanel"
+// import SummaryPanel from "../components/SummaryPanel"
 import SortAndFilterPanel from "../components/SortAndFilterPanel"
 
 //Utils
@@ -22,9 +22,10 @@ export default function Home() {
   ]
 
   const filterOptions = [
+    { value: "done", label: "Include Done" },
     { value: "dateDue", label: "Time Limit" },
     { value: "owedTo", label: "Owed To" },
-    //TODO: Add option to filter by amount
+    { value: "amount", label: "Amount" },
   ]
 
   //State
@@ -66,7 +67,7 @@ export default function Home() {
     <div className="home">
       <div className="side">
         <NoteForm />
-        {/* {filteredNotes && filteredNotes.length > 0 && <SummaryPanel/>} */}
+        {/* {filteredNotes && filteredNotes.length > 0 && <SummaryPanel />} */}
       </div>
 
       <main>
